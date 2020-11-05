@@ -6,10 +6,7 @@
     tools:context=".fragments.DispatchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/dispatch"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Dispatch" />
+
+    <include layout="@layout/dispatch_header_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

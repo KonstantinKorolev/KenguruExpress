@@ -1,11 +1,16 @@
 package com.example.kenguruexpress.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.kenguruexpress.MainActivity
 import com.example.kenguruexpress.R
+import kotlinx.android.synthetic.main.cargo_dialog.view.*
+import kotlinx.android.synthetic.main.documents_dialog.view.*
+import kotlinx.android.synthetic.main.fragment_purse.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,6 +43,54 @@ class PurseFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_purse, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Нажать на кнопку рассчитать, чтобы появилась диалоговое окно
+        countBtn.setOnClickListener {
+            val selectedSpinnerItem = spinner.selectedItem.toString()
+
+            if (selectedSpinnerItem == "Груз") { // Если выбран "Груз", то выбираем диалоговую форму - cargo_dialog
+                // Встраиваем в диалог наше кастомное view диалога
+                val mDialogView = LayoutInflater.from(context).inflate(R.layout.cargo_dialog, null)
+                val mBuilder = AlertDialog.Builder(context)
+                        .setView(mDialogView)
+                        .setTitle("Дополнительные данные")
+                // Показываем диалог
+                val mAlertDialog = mBuilder.show()
+                // Нажатие на кнопку Ввод
+                mDialogView.cargo_enter_btn.setOnClickListener {
+                    // скрываем диалог
+                    mAlertDialog.dismiss()
+                }
+                // Нажатие на кнопку Отмена
+                mDialogView.cargo_cancel_btn.setOnClickListener {
+                    // скрываем диалог
+                    mAlertDialog.dismiss()
+                }
+            } else if (selectedSpinnerItem == "Документы") {
+                // Если выбраны "Документы", то выбираем диалоговую форму - documents_dialog
+                // Встраиваем в диалог наше кастомное view диалога
+                val mDialogView = LayoutInflater.from(context).inflate(R.layout.documents_dialog, null)
+                val mBuilder = AlertDialog.Builder(context)
+                        .setView(mDialogView)
+                        .setTitle("Дополнительные данные")
+                // Показываем диалог
+                val mAlertDialog = mBuilder.show()
+                // Нажатие на кнопку Ввод
+                mDialogView.documents_enter_btn.setOnClickListener {
+                    // скрываем диалог
+                    mAlertDialog.dismiss()
+                }
+                // Нажатие на кнопку Отмена
+                mDialogView.documents_cancel_btn.setOnClickListener {
+                    // скрываем диалог
+                    mAlertDialog.dismiss()
+                }
+            }
+        }
+    }
+
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -57,4 +110,5 @@ class PurseFragment : Fragment() {
                 }
             }
     }
+
 }

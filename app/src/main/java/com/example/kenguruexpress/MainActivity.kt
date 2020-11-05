@@ -1,13 +1,17 @@
 package com.example.kenguruexpress
 
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import com.example.kenguruexpress.fragments.DispatchFragment
 import com.example.kenguruexpress.fragments.LkFragment
 import com.example.kenguruexpress.fragments.PurseFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.cargo_dialog.view.*
+import kotlinx.android.synthetic.main.fragment_purse.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,13 +19,14 @@ class MainActivity : AppCompatActivity() {
     private val dispatchFragment = DispatchFragment()
     private val lkFragment = LkFragment()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         replaceFragment(purseFragment)
 
         bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.ic_purse -> replaceFragment(purseFragment)
                 R.id.ic_dispatch -> replaceFragment(dispatchFragment)
                 R.id.ic_lka -> replaceFragment(lkFragment)
