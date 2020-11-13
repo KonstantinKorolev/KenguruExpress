@@ -1,11 +1,15 @@
 package com.example.kenguruexpress.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.kenguruexpress.R
+import kotlinx.android.synthetic.main.dispatch_dialog.*
+import kotlinx.android.synthetic.main.dispatch_dialog.view.*
+import kotlinx.android.synthetic.main.fragment_dispatch.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,6 +41,30 @@ class DispatchFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dispatch, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        dispatchShowDialog()
+    }
+
+    private fun dispatchShowDialog() {
+        dispatchFloatingButton.setOnClickListener {
+            val dDialogView = LayoutInflater.from(context).inflate(R.layout.dispatch_dialog, null)
+            val dBuilder = AlertDialog.Builder(context)
+                    .setView(dDialogView)
+                    .setTitle("Дополнительные данные")
+            val dAlertDialog = dBuilder.show()
+
+            dDialogView.dispatch_enter_btn.setOnClickListener {
+                val dTrackNum = dDialogView.dispatch_track_num.text.toString()
+                dAlertDialog.dismiss()
+            }
+            dDialogView.dispatch_cancel_btn.setOnClickListener {
+                dAlertDialog.dismiss()
+            }
+        }
+    }
+
 
     companion object {
         /**

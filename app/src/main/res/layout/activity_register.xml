@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
-        android:text="Вход"
+        android:text="Регистрация"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/emailLoginEditText"
+        android:id="@+id/emailRegisterEditText"
         android:layout_width="251dp"
         android:layout_height="43dp"
         android:layout_marginTop="40dp"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/passwordLoginEditText"
+        android:id="@+id/passwordRegisterEditText"
         android:layout_width="251dp"
         android:layout_height="43dp"
         android:layout_marginTop="24dp"
@@ -48,47 +48,36 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLoginEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailRegisterEditText" />
 
     <Button
-        android:id="@+id/loginBtn"
-
-        android:layout_width="143dp"
-        android:layout_height="69dp"
+        android:id="@+id/registerBtn"
+        android:layout_width="282dp"
+        android:layout_height="82dp"
+        android:layout_marginBottom="272dp"
         android:insetBottom="9dp"
-        android:text="Войти"
-        android:textSize="20dp"
+        android:text="зарегистрироваться"
+        android:textSize="16sp"
+        app:backgroundTint="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordRegisterEditText"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/cancelRegisterBtn"
+        android:layout_width="215dp"
+        android:layout_height="69dp"
+        android:text="Отмена"
+        android:textSize="16sp"
         app:backgroundTint="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgetPasswordBtn"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintTop_toBottomOf="@+id/registerBtn"
+        app:layout_constraintVertical_bias="0.148" />
 
-    <Button
-        android:id="@+id/toRegisterBtn"
-        style="@style/MyBordelessButtonStyle"
-        android:layout_width="163dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="40dp"
-        android:insetBottom="9dp"
-        android:text="Регистрация"
-        app:backgroundTint="@color/material_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLoginEditText" />
-
-    <Button
-        android:id="@+id/forgetPasswordBtn"
-        style="@style/MyBordelessButtonStyle"
-        android:layout_width="197dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:insetBottom="9dp"
-        android:text="Забыли пароль?"
-        app:backgroundTint="@color/material_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toRegisterBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

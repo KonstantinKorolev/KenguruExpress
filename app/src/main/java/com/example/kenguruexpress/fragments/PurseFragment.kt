@@ -11,6 +11,7 @@ import com.example.kenguruexpress.R
 import kotlinx.android.synthetic.main.cargo_dialog.view.*
 import kotlinx.android.synthetic.main.documents_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_purse.*
+import kotlinx.android.synthetic.main.fragment_purse.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,6 +46,7 @@ class PurseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         // Нажать на кнопку рассчитать, чтобы появилась диалоговое окно
         countBtn.setOnClickListener {
             val selectedSpinnerItem = spinner.selectedItem.toString()
@@ -53,12 +55,18 @@ class PurseFragment : Fragment() {
                 // Встраиваем в диалог наше кастомное view диалога
                 val mDialogView = LayoutInflater.from(context).inflate(R.layout.cargo_dialog, null)
                 val mBuilder = AlertDialog.Builder(context)
-                        .setView(mDialogView)
-                        .setTitle("Дополнительные данные")
+                    .setView(mDialogView)
+                    .setTitle("Дополнительные данные")
                 // Показываем диалог
                 val mAlertDialog = mBuilder.show()
                 // Нажатие на кнопку Ввод
                 mDialogView.cargo_enter_btn.setOnClickListener {
+                    // записываем данные
+                    val cargoHeight = mDialogView.dialog_cargo_height.text.toString()
+                    val cargoWidth = mDialogView.dialog_cargo_width.text.toString()
+                    val cargoWeight = mDialogView.dialog_cargo_width.text.toString()
+                    val cargoLenght = mDialogView.dialog_cargo_lenght.text.toString()
+                    val similarGoods = mDialogView.similarGoods.text.toString()
                     // скрываем диалог
                     mAlertDialog.dismiss()
                 }
@@ -72,12 +80,15 @@ class PurseFragment : Fragment() {
                 // Встраиваем в диалог наше кастомное view диалога
                 val mDialogView = LayoutInflater.from(context).inflate(R.layout.documents_dialog, null)
                 val mBuilder = AlertDialog.Builder(context)
-                        .setView(mDialogView)
-                        .setTitle("Дополнительные данные")
+                    .setView(mDialogView)
+                    .setTitle("Дополнительные данные")
                 // Показываем диалог
                 val mAlertDialog = mBuilder.show()
                 // Нажатие на кнопку Ввод
                 mDialogView.documents_enter_btn.setOnClickListener {
+                    // записываем данные
+                    val documentsWeight = mDialogView.dialog_documents_weight.text.toString()
+                    val similarGoods = mDialogView.similarGoods.text.toString()
                     // скрываем диалог
                     mAlertDialog.dismiss()
                 }
@@ -89,7 +100,6 @@ class PurseFragment : Fragment() {
             }
         }
     }
-
 
     companion object {
         /**
