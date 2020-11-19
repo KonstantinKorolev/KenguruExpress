@@ -1,15 +1,31 @@
 package com.example.kenguruexpress.fragments
 
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.kenguruexpress.MainActivity
 import com.example.kenguruexpress.R
 import com.example.kenguruexpress.RegisterActivity
+import com.example.kenguruexpress.RetrofitClient
+import com.example.kenguruexpress.api.UserApi
+import com.example.kenguruexpress.models.resend_activation.ResendRequest
+import kotlinx.android.synthetic.main.dispatch_dialog.view.*
+import kotlinx.android.synthetic.main.fragment_dispatch.*
 import kotlinx.android.synthetic.main.fragment_lk.*
+import kotlinx.android.synthetic.main.resend_email_layout.*
+import kotlinx.android.synthetic.main.resend_email_layout.resendEmail_enter_btn
+import kotlinx.android.synthetic.main.resend_email_layout.view.*
+import okhttp3.Callback
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,10 +61,57 @@ class LkFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toRegisterBtn.setOnClickListener {
+        toRegisterBtn.setOnClickListener {  // Переход к RegisterActivity
             val i = Intent(context, RegisterActivity::class.java)
             startActivity(i)
         }
+
+        resendEmail.setOnClickListener { // При нажатии кнопки показывет диалог с введением Email
+            val lkDialogView = LayoutInflater.from(context).inflate(R.layout.resend_email_layout, null)
+            val lkBuilder = AlertDialog.Builder(context)
+                    .setView(lkDialogView)
+                    .setTitle("Введите Email")
+            val lkAlertDialog = lkBuilder.show()
+
+            lkDialogView.resendEmail_enter_btn.setOnClickListener {
+                val email = lkDialogView.resendEmailText.text.toString().trim()
+                if (email.isEmpty()) {
+                    resendEmailText.error = "Введите Email"
+                    resendEmailText.requestFocus()
+                } else {
+                    resendEmail(email)
+                    lkAlertDialog.dismiss()
+                }
+            }
+
+            lkDialogView.resendEmail_cancel_btn.setOnClickListener {
+                lkAlertDialog.dismiss()
+            }
+        }
+    }
+
+    private fun resendEmail(email: String) {
+        val request = ResendRequest()
+        request.email = email
+        val retrofitSource = RetrofitClient().getRetrofitClient().create(UserApi::class.java)
+        retrofitSource.resendEmail(request).enqueue(object : retrofit2.Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                val code = response.code()
+                Log.i("code", code.toString())
+                if (code == 204) {
+                    Toast.makeText(context, "Вам повторно выслано письмо на почту",
+                            Toast.LENGTH_SHORT).show()
+                } else if (code == 400) {
+                    Toast.makeText(context, "Почта уже активирована",
+                            Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     companion object {

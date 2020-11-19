@@ -35,8 +35,8 @@ class DispatchFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dispatch, container, false)
@@ -44,10 +44,7 @@ class DispatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dispatchShowDialog()
-    }
 
-    private fun dispatchShowDialog() {
         dispatchFloatingButton.setOnClickListener {
             val dDialogView = LayoutInflater.from(context).inflate(R.layout.dispatch_dialog, null)
             val dBuilder = AlertDialog.Builder(context)
@@ -62,9 +59,9 @@ class DispatchFragment : Fragment() {
             dDialogView.dispatch_cancel_btn.setOnClickListener {
                 dAlertDialog.dismiss()
             }
+
         }
     }
-
 
     companion object {
         /**
@@ -78,11 +75,11 @@ class DispatchFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DispatchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                DispatchFragment().apply {
+                    arguments = Bundle().apply {
+                        putString(ARG_PARAM1, param1)
+                        putString(ARG_PARAM2, param2)
+                    }
                 }
-            }
-    }
+        }
 }
