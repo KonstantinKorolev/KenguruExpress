@@ -1,23 +1,21 @@
 package com.example.kenguruexpress
 
-
-import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.kenguruexpress.fragments.DispatchFragment
-import com.example.kenguruexpress.fragments.LkFragment
 import com.example.kenguruexpress.fragments.PurseFragment
+import com.example.kenguruexpress.fragments.UsersLkFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.cargo_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_purse.*
 
 class MainActivity : AppCompatActivity() {
 
     private val purseFragment = PurseFragment()
     private val dispatchFragment = DispatchFragment()
-    private val lkFragment = LkFragment()
+    private val usersLkFragment = UsersLkFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +23,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         replaceFragment(purseFragment)
 
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.ic_purse -> replaceFragment(purseFragment)
-                R.id.ic_dispatch -> replaceFragment(dispatchFragment)
-                R.id.ic_lka -> replaceFragment(lkFragment)
+        val intent = intent
+        val userLoginBool = intent.getBooleanExtra("userLogging", false)
+        val userEmail = intent.getStringExtra("email")
+
+        if (!userLoginBool) {
+            bottom_navigation.setOnNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.ic_purse -> replaceFragment(purseFragment)
+                    R.id.ic_dispatch -> replaceFragment(dispatchFragment)
+                    R.id.ic_lka -> startActivity(Intent(this, LoginActivity::class.java))
+                }
+                true
             }
-            true
+        } else if (userLoginBool) {
+            bottom_navigation.setOnNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.ic_purse -> replaceFragment(purseFragment)
+                    R.id.ic_dispatch -> replaceFragment(dispatchFragment)
+                    R.id.ic_lka -> replaceFragment(newInstance(userEmail.toString()))
+                }
+                true
+            }
         }
     }
 
@@ -39,5 +52,13 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
         transaction.commit()
+    }
+
+    fun newInstance(email: String): UsersLkFragment {
+        val fr = usersLkFragment
+        val args = Bundle()
+        args.putString("email", email)
+        fr.arguments = args
+        return fr
     }
 }

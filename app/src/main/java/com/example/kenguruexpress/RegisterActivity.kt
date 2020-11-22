@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.example.kenguruexpress.api.UserApi
-import com.example.kenguruexpress.fragments.LkFragment
 import com.example.kenguruexpress.models.users.RegistrationRequest
 import com.example.kenguruexpress.models.users.ReqistrationResponse
 import kotlinx.android.synthetic.main.activity_register.*
@@ -62,8 +59,7 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT).show()
                 }
                 if (user != null) {
-                    Toast.makeText(applicationContext, "Регистрация прошла успешна, вам " +
-                            "пришло письмо на электронную почту", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Регистрация прошла успешна", Toast.LENGTH_SHORT).show()
                     Log.i("email", response.code().toString())
                     Log.i("email", user.email.toString())
                     Log.i("id", user.id.toString())
