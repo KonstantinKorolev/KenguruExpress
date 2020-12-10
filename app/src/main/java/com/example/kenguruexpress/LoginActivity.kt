@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import com.example.kenguruexpress.api.UserApi
-import com.example.kenguruexpress.fragments.UsersLkFragment
 import com.example.kenguruexpress.models.email_activation.emailActivationRequest
 import com.example.kenguruexpress.models.login.LoginRequest
 import com.example.kenguruexpress.models.login.LoginResponse
@@ -23,10 +21,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var sessionManager : SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        sessionManager = SessionManager(this)
 
         toRegisterBtn.setOnClickListener {  // Переход к RegisterActivity
             val i = Intent(this, RegisterActivity::class.java)
@@ -78,22 +79,22 @@ class LoginActivity : AppCompatActivity() {
     private fun resendEmail(email: String) {
         val request = ResendRequest()
         request.email = email
-        val retrofitSource = RetrofitClient().getRetrofitClient().create(UserApi::class.java)
+        val retrofitSource = RetrofitClient().getRetrofitClient(this).create(UserApi::class.java)
         retrofitSource.resendEmail(request).enqueue(object : retrofit2.Callback<ResponseBody>{
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 val code = response.code()
                 Log.i("code", code.toString())
                 if (code == 204) {
-                    Toast.makeText(this@LoginActivity, "Вам повторно выслано письмо на почту",
+                    Toast.makeText(applicationContext, "Вам повторно выслано письмо на почту",
                         Toast.LENGTH_SHORT).show()
                 } else if (code == 400) {
-                    Toast.makeText(this@LoginActivity, "Почта уже активирована",
+                    Toast.makeText(applicationContext, "Почта уже активирована",
                         Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Toast.makeText(this@LoginActivity, t.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "API call failed", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -104,27 +105,26 @@ class LoginActivity : AppCompatActivity() {
         val request = LoginRequest()
         request.email = email
         request.password = password
-        val retrofitSource = RetrofitClient().getRetrofitClient().create(UserApi::class.java)
+        val retrofitSource = RetrofitClient().getRetrofitClient(this).create(UserApi::class.java)
         retrofitSource.login(request).enqueue(object : retrofit2.Callback<LoginResponse>{
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 val res = response.body()
                 if (res == null) {
-                    Toast.makeText(this@LoginActivity, response.errorBody().toString(),
+                    Toast.makeText(applicationContext, response.errorBody().toString(),
                         Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@LoginActivity, "Вход прошёл успешно",
-                        Toast.LENGTH_SHORT).show()
                     userLoginBool = true
-                    val i = Intent(this@LoginActivity, MainActivity::class.java)
+                    val i = Intent(applicationContext, MainActivity::class.java)
                     i.putExtra("userLogging", userLoginBool)
                     i.putExtra("email", email)
                     startActivity(i)
+                    sessionManager.saveAuthToken(res.auth_token.toString())
                     Log.i("token", res.auth_token.toString())
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(this@LoginActivity, t.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -134,21 +134,21 @@ class LoginActivity : AppCompatActivity() {
         val request = emailActivationRequest()
         request.uid = uid
         request.token = token
-        val retrofitSource = RetrofitClient().getRetrofitClient().create(UserApi::class.java)
+        val retrofitSource = RetrofitClient().getRetrofitClient(this).create(UserApi::class.java)
         retrofitSource.activationEmail(request).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 when (response.code()) {
-                    204 -> Toast.makeText(this@LoginActivity, "Почта успешно активирована",
+                    204 -> Toast.makeText(applicationContext, "Почта успешно активирована",
                         Toast.LENGTH_SHORT).show()
-                    403 -> Toast.makeText(this@LoginActivity, "Почта уже активирована",
+                    403 -> Toast.makeText(applicationContext, "Почта уже активирована",
                         Toast.LENGTH_SHORT).show()
-                    400 -> Toast.makeText(this@LoginActivity, "Введены неверные данные",
+                    400 -> Toast.makeText(applicationContext, "Введены неверные данные",
                         Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Toast.makeText(this@LoginActivity, t.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "API call failed", Toast.LENGTH_SHORT).show()
             }
         })
     }

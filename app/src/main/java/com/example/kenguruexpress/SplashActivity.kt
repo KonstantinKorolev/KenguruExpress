@@ -6,7 +6,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.widget.ProgressBar
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
@@ -52,8 +51,9 @@ class SplashActivity : AppCompatActivity() {
             }
         }
     }
-    private fun routeToMainActivity() { // Функция для перехода на mainActivity
-        val intent = Intent(this, MainActivity::class.java)
+    private fun routeToMainActivity() { // Функция для перехода в LoginActivity
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

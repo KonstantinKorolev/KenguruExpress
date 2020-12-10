@@ -17,6 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="-"
+        android:textColor="@color/material_blue"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
@@ -27,6 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="-"
+        android:textColor="@color/material_blue"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailUserLk" />
@@ -37,30 +41,32 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="-"
+        android:textColor="@color/material_blue"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameUserLk" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/changeUserInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Редактирование данных"
         android:backgroundTint="@color/material_blue"
+        android:text="Редактирование данных"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneUserLk" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/changeUserAddres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Редактирование адресов"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/material_blue"
+        android:text="Редактирование адресов"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/changeUserInfo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

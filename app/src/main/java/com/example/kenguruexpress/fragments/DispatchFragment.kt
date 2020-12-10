@@ -53,7 +53,7 @@ class DispatchFragment : Fragment() {
             val dAlertDialog = dBuilder.show()
 
             dDialogView.dispatch_enter_btn.setOnClickListener {
-                val dTrackNum = dDialogView.dispatch_track_num.text.toString()
+                val dTrackNum = dDialogView.dispatch_track_num.text.toString().trim()
                 dAlertDialog.dismiss()
             }
             dDialogView.dispatch_cancel_btn.setOnClickListener {

@@ -1,6 +1,5 @@
 package com.example.kenguruexpress
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,8 +19,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         cancelRegisterBtn.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
+            onBackPressed()
         }
         initAction()
     }
@@ -47,7 +45,7 @@ class RegisterActivity : AppCompatActivity() {
         request.email = emailRegisterEditText.text.toString().trim()
         request.password = passwordRegisterEditText.text.toString().trim()
 
-        val retrofitSource = RetrofitClient().getRetrofitClient().create(UserApi::class.java)
+        val retrofitSource = RetrofitClient().getRetrofitClient(this).create(UserApi::class.java)
         retrofitSource.createUser(request).enqueue(object : Callback<ReqistrationResponse>{
             override fun onResponse(
                     call: Call<ReqistrationResponse>,
@@ -68,7 +66,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ReqistrationResponse>, t: Throwable) {
-                Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "API call failed", Toast.LENGTH_SHORT).show()
             }
 
         })

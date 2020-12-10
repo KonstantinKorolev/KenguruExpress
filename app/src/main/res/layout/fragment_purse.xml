@@ -8,6 +8,16 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <AutoCompleteTextView
+        android:id="@+id/cityDispatchCompleteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:hint="Введите город отправки"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
     <TextView
         android:id="@+id/textToDoor2"
         android:layout_width="wrap_content"
@@ -25,52 +35,30 @@
         android:id="@+id/switchToDoor2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.391"
+        app:layout_constraintHorizontal_bias="0.422"
         app:layout_constraintStart_toEndOf="@+id/textToDoor2"
         app:layout_constraintTop_toBottomOf="@+id/switchToDoor"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView2"
-        android:layout_width="285dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:inputType="textShortMessage|textLongMessage|textAutoCorrect"
-        android:hint="Введите город получения"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
 
     <include
         android:id="@+id/include"
         layout="@layout/purse_header_menu" />
 
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
-        android:layout_width="283dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="36dp"
-        android:inputType="textShortMessage|textLongMessage|textAutoCorrect"
-        android:hint="Введите город отправки"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-
     <Switch
         android:id="@+id/switchToDoor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintHorizontal_bias="0.422"
         app:layout_constraintStart_toEndOf="@+id/textToDoor"
-        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView2"
+        app:layout_constraintTop_toBottomOf="@+id/cityReceivingCompleteTextView"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
@@ -79,12 +67,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginLeft="92dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="32dp"
         android:text="От склада - до двери"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView2" />
+        app:layout_constraintTop_toBottomOf="@+id/cityReceivingCompleteTextView" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -101,12 +89,11 @@
         android:layout_width="201dp"
         android:layout_height="54dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="28dp"
         android:text="Рассчитать"
         app:backgroundTint="@color/material_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
         tools:ignore="UnknownId" />
@@ -115,13 +102,23 @@
         android:id="@+id/similarGoods"
         android:layout_width="255dp"
         android:layout_height="39dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="Кол-во однотипных товаров"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <AutoCompleteTextView
+        android:id="@+id/cityReceivingCompleteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:hint="Введите город отправки"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cityDispatchCompleteTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChangeUserDataActivity">
+
+    <Button
+        android:id="@+id/confirmDataChangesBtn"
+        android:layout_width="138dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/material_blue"
+        android:text="применить"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPhoneBtn" />
+
+    <EditText
+        android:id="@+id/changeDataLastName"
+        android:layout_width="250dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/material_blue"
+        android:ems="10"
+        android:hint="Введите вашу фамилию"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeDataTitle" />
+
+    <EditText
+        android:id="@+id/changeDataPatronymic"
+        android:layout_width="250dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/material_blue"
+        android:ems="10"
+        android:hint="Введите ваше отчество"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeDataName" />
+
+    <EditText
+        android:id="@+id/changeDataPhone"
+        android:layout_width="250dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/material_blue"
+        android:ems="10"
+        android:hint="Введите ваш номер телефона"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeDataPatronymic" />
+
+    <EditText
+        android:id="@+id/changeDataName"
+        android:layout_width="250dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/material_blue"
+        android:ems="10"
+        android:hint="Введите ваше имя"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeDataLastName" />
+
+    <TextView
+        android:id="@+id/changeDataTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Редактирование данных"
+        android:textColor="@color/material_blue"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/confirmPhoneBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="@color/material_blue"
+        android:text="Подтвердить номер"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeDataPhone" />
+
+    <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="138dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/material_blue"
+        android:text="Отмена"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmDataChangesBtn"
+        app:layout_constraintVertical_bias="0.113" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

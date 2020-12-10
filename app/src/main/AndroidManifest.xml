@@ -14,7 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KenguruExpress"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".ShowTariffs"></activity>
+        <activity android:name=".DispatchActivity" />
+        <activity android:name=".ReceivingActivity" />
+        <activity android:name=".ChangeUserDataActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".UserLkActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".SplashActivity">
