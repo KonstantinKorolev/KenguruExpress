@@ -4,6 +4,7 @@
     package="com.example.kenguruexpress">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,12 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KenguruExpress"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ShowTariffs"></activity>
-        <activity android:name=".DispatchActivity" />
-        <activity android:name=".ReceivingActivity" />
+        <activity android:name=".AddressActivityShow" />
+        <activity android:name=".AddOrChangeAddressActivity" />
+        <activity android:name=".ShowTariffsActivity" />
         <activity android:name=".ChangeUserDataActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".UserLkActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>

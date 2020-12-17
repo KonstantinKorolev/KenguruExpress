@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import com.example.kenguruexpress.adapters.AddressAdapter
 import com.example.kenguruexpress.api.UserApi
 import com.example.kenguruexpress.models.email_activation.emailActivationRequest
 import com.example.kenguruexpress.models.login.LoginRequest
@@ -45,11 +46,13 @@ class LoginActivity : AppCompatActivity() {
                 passwordLoginEditText.requestFocus()
             } else {
                 login(email, password) // Вызовется функция login отвечающая за процесс входа в аккаунт
+                finish()
             }
         }
 
-        activationEmailBtn.setOnClickListener { // Если пользователь нажмёт на кнопку "Подтвердить Email"
-            activationEmail("MTY", "5lr-f738a260a1046045ce69")
+        acceptEmailBtn.setOnClickListener {
+            // Вызывает метод активации почты пользователя, программно изменяются аргументы для подтверждения
+            activationEmail("MjI", "5mg-91ccb7a636df5c86c9a7")
         }
 
         resendEmail.setOnClickListener { // При нажатии кнопки показывет диалог с введением Email
@@ -109,6 +112,13 @@ class LoginActivity : AppCompatActivity() {
         retrofitSource.login(request).enqueue(object : retrofit2.Callback<LoginResponse>{
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 val res = response.body()
+                val code = response.code()
+                if (code == 400) {
+                    Toast.makeText(applicationContext, "Проверьте правильно ли введены пароль или логин",
+                            Toast.LENGTH_SHORT).show()
+                    val i = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(i)
+                }
                 if (res == null) {
                     Toast.makeText(applicationContext, response.errorBody().toString(),
                         Toast.LENGTH_SHORT).show()
@@ -117,9 +127,12 @@ class LoginActivity : AppCompatActivity() {
                     val i = Intent(applicationContext, MainActivity::class.java)
                     i.putExtra("userLogging", userLoginBool)
                     i.putExtra("email", email)
-                    startActivity(i)
+
+                    // Сохраняем токен
                     sessionManager.saveAuthToken(res.auth_token.toString())
                     Log.i("token", res.auth_token.toString())
+
+                    startActivity(i)
                 }
             }
 
@@ -139,11 +152,11 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 when (response.code()) {
                     204 -> Toast.makeText(applicationContext, "Почта успешно активирована",
-                        Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT).show()
                     403 -> Toast.makeText(applicationContext, "Почта уже активирована",
-                        Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT).show()
                     400 -> Toast.makeText(applicationContext, "Введены неверные данные",
-                        Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT).show()
                 }
             }
 

@@ -32,6 +32,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed(
             {
                 routeToMainActivity()
+                finish()
             }, splashScreenDuration) // Используем splashScreenDuration для перехода в момент конца анимации progress bar'a
     }
 
@@ -54,6 +55,5 @@ class SplashActivity : AppCompatActivity() {
     private fun routeToMainActivity() { // Функция для перехода в LoginActivity
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
-        finish()
     }
 }

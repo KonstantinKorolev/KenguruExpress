@@ -14,13 +14,14 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.kenguruexpress.R
 import com.example.kenguruexpress.RetrofitClient
-import com.example.kenguruexpress.ShowTariffs
+import com.example.kenguruexpress.ShowTariffsActivity
 import com.example.kenguruexpress.api.GeographyApi
 import com.example.kenguruexpress.api.ProductApi
+import com.example.kenguruexpress.models.departure.postDepartureRequest
+import com.example.kenguruexpress.models.departure.postDepartureResponse
 import com.example.kenguruexpress.models.locality.CityLocal
 import com.example.kenguruexpress.models.products.CreateProductRequest
 import com.example.kenguruexpress.models.products.CreateProductResponse
-import kotlinx.android.synthetic.main.activity_receiving.*
 import kotlinx.android.synthetic.main.cargo_dialog.view.*
 import kotlinx.android.synthetic.main.documents_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_purse.*
@@ -47,8 +48,6 @@ class PurseFragment : Fragment() {
     private var cities = mutableListOf<String>()
     private lateinit var cityAdapter : ArrayAdapter<String>
 
-    var idDispatch : Int? = null
-
     var cityIdReceiving : Int? = null
     var cityIdDispatch : Int? = null
 
@@ -58,8 +57,12 @@ class PurseFragment : Fragment() {
     var cargoLenght : String = ""
     var similarGoods : String = ""
 
+    var pickup = false
+    var delivery = false
+
     var documentsWeight : String = ""
 
+    var cargoesList: ArrayList<Int> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,7 +117,7 @@ class PurseFragment : Fragment() {
         })
 
 
-        // Нажать на кнопку рассчитать, чтобы появилась диалоговое окно
+        // Нажать на кнопку рассчитать, чтобы появилось диалоговое окно
         countBtn.setOnClickListener {
             if (cityDispatchCompleteTextView.text.isEmpty()) {
                 cityDispatchCompleteTextView.error = "Введите город отправки"
@@ -125,6 +128,8 @@ class PurseFragment : Fragment() {
             } else {
                 getIdData(cityReceivingCompleteTextView.text.toString(), context!!, true)
                 getIdData(cityDispatchCompleteTextView.text.toString(), context!!, false)
+                similarGoods = similarGoodsAdd.text.toString()
+                cargoesList.add(similarGoods.toInt())
                 showDialog()
             }
         }
@@ -134,9 +139,11 @@ class PurseFragment : Fragment() {
                 // Если переключатель включен
                 switchToDoor2.isClickable = false
                 switchToDoor2.isEnabled = false
+                pickup = true
             } else {
                 switchToDoor2.isClickable = true
                 switchToDoor2.isEnabled = true
+                delivery = true
             }
         }
 
@@ -224,10 +231,10 @@ class PurseFragment : Fragment() {
                 cargoWidth = mDialogView.dialog_cargo_width.text.toString()
                 cargoWeight = mDialogView.dialog_cargo_width.text.toString()
                 cargoLenght = mDialogView.dialog_cargo_lenght.text.toString()
-                similarGoods = mDialogView.similarGoods.text.toString()
+                createProduct("Груз", context!!)
+                createDeparture(context!!)
                 // скрываем диалог
                 mAlertDialog.dismiss()
-                createProduct("Груз", context!!)
             }
             // Нажатие на кнопку Отмена
             mDialogView.cargo_cancel_btn.setOnClickListener {
@@ -247,7 +254,6 @@ class PurseFragment : Fragment() {
             mDialogView.documents_enter_btn.setOnClickListener {
                 // записываем данные
                 documentsWeight = mDialogView.dialog_documents_weight.text.toString()
-                similarGoods = mDialogView.similarGoods.text.toString()
                 // скрываем диалог
                 mAlertDialog.dismiss()
             }
@@ -273,13 +279,9 @@ class PurseFragment : Fragment() {
                         call: Call<CreateProductResponse>,
                         response: Response<CreateProductResponse>
                     ) {
-                        val res = response.body()
                         val code = response.code()
                         if (code == 201) {
                             Toast.makeText(context, "Груз создан успешно", Toast.LENGTH_SHORT).show()
-                            idDispatch = res!!.id
-                            val i = Intent(context, ShowTariffs::class.java)
-                            startActivity(i)
                         }
                     }
 
@@ -290,6 +292,37 @@ class PurseFragment : Fragment() {
                 })
         }
     }
+
+    private fun createDeparture(context: Context) {
+        val request = postDepartureRequest()
+        request.receiver_city = cityIdReceiving
+        request.sender_city = cityIdDispatch
+        request.cargoes = cargoesList
+        request.delivery = delivery
+        request.pickup = pickup
+        RetrofitClient().getRetrofitClient(context).create(ProductApi::class.java)
+            .postDeparture(request).enqueue(object : Callback<postDepartureResponse>{
+                override fun onResponse(
+                    call: Call<postDepartureResponse>,
+                    response: Response<postDepartureResponse>
+                ) {
+                    val res = response.body()
+                    val code = response.code()
+                    if (code == 201) {
+                        val i = Intent(context, ShowTariffsActivity::class.java)
+                        // передаём id груза в ShowTariffsActivity
+                        i.putExtra("id", res!!.id)
+                        startActivity(i)
+                    }
+                }
+
+                override fun onFailure(call: Call<postDepartureResponse>, t: Throwable) {
+                    Toast.makeText(context, "API call failed", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+    }
+
 
     companion object {
         /**

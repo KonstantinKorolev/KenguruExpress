@@ -2,17 +2,12 @@ package com.example.kenguruexpress.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.kenguruexpress.ChangeUserDataActivity
-import com.example.kenguruexpress.R
-import com.example.kenguruexpress.ReceivingActivity
-import kotlinx.android.synthetic.main.fragment_purse.*
+import com.example.kenguruexpress.*
 import kotlinx.android.synthetic.main.fragment_users_lk.*
-import kotlinx.android.synthetic.main.fragment_users_lk.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,14 +43,20 @@ class UsersLkFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        emailUserLk.text = arguments!!.getString("email", "-")
+        phoneUserLk.text = arguments!!.getString("phone", "-")
+        nameUserLk.text = arguments!!.getString("userName", "-")
+
         changeUserInfo.setOnClickListener {
             val i = Intent(context, ChangeUserDataActivity::class.java)
             startActivity(i)
         }
 
-        emailUserLk.text = arguments!!.getString("email", "-")
-        phoneUserLk.text = arguments!!.getString("phone", "-")
-        nameUserLk.text = arguments!!.getString("userName", "-")
+        changeUserAddres.setOnClickListener {
+            val i = Intent(context, AddressActivityShow::class.java)
+            i.putExtra("email", emailUserLk.text)
+            startActivity(i)
+        }
     }
 
     companion object {

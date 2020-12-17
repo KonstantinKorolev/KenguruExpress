@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddOrChangeAddressActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="343dp"
+        tools:layout_editor_absoluteY="224dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="Информация об контакте"
+                android:layout_marginLeft="75dp"
+                android:textColor="@color/material_blue"
+                android:textSize="20sp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/cityAuthoCompleteAddr"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="24dp"
+                android:hint="Введите город" />
+
+            <AutoCompleteTextView
+                android:id="@+id/streetAuthoCompleteAddr"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="12dp"
+                android:hint="Введите название улицы" />
+
+            <AutoCompleteTextView
+                android:id="@+id/houseAuthoCompleteAddr"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="12dp"
+                android:hint="Введите номер дома" />
+
+            <EditText
+                android:id="@+id/editFlat"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="12dp"
+                android:text="43434"
+                android:ems="10"
+                android:hint="Введите квартиру"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editIndex"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="12dp"
+                android:text="65965865"
+                android:ems="10"
+                android:hint="Введите индекс"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editSurname"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="12dp"
+                android:text="Петров"
+                android:ems="10"
+                android:hint="Введите фамилию"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="12dp"
+                android:text="Василий"
+                android:ems="10"
+                android:hint="Введите имя"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editPatronymic"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="16dp"
+                android:text="Семёнович"
+                android:ems="10"
+                android:hint="Введите отчество"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editCompany"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="12dp"
+                android:text="РосАгро"
+                android:ems="10"
+                android:hint="Введите название компании"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editPhone"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="12dp"
+                android:text="545489548549"
+                android:ems="10"
+                android:hint="Введите телефон"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/editDopPhone"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="12dp"
+                android:text="59458943"
+                android:ems="10"
+                android:hint="Введите доп.телефон"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/editComment"
+                android:layout_width="251dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="70dp"
+                android:text="Good Person"
+                android:ems="10"
+                android:hint="Введите комментарий"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/addresAgreeBtnAddr"
+                android:layout_width="132dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="130dp"
+                android:backgroundTint="@color/material_blue"
+                android:text="Применить" />
+
+            <Button
+                android:id="@+id/addresCancelBtnAddr"
+                android:layout_width="132dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/material_blue"
+                android:layout_marginLeft="130dp"
+                android:text="Назад" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

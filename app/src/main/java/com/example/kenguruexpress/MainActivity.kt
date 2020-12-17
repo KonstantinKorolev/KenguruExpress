@@ -6,12 +6,15 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.kenguruexpress.db.DbIdManager
 import com.example.kenguruexpress.fragments.DispatchFragment
 import com.example.kenguruexpress.fragments.PurseFragment
 import com.example.kenguruexpress.fragments.UsersLkFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private val myBdManager = DbIdManager(this)
 
     private val purseFragment = PurseFragment()
     private val dispatchFragment = DispatchFragment()
@@ -32,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         val userLoginBool = intent.getBooleanExtra("userLogging", false)
         val userEmail = intent.getStringExtra("email").toString()
         phone = intent.getStringExtra("phone")
+
+        // отправляем email в AddressActivityShow
+        val i = Intent(applicationContext, AddressActivityShow::class.java)
+        i.putExtra("email", userEmail)
 
         val firstName = intent.getStringExtra("first_name")
         val lastName = intent.getStringExtra("last_name")
@@ -67,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    fun newInstanceLk(email: String, phone:String, userName: String): UsersLkFragment {
+    private fun newInstanceLk(email: String, phone:String, userName: String): UsersLkFragment {
         val fr = usersLkFragment
         val args = Bundle()
         args.putString("email", email)
@@ -77,10 +84,20 @@ class MainActivity : AppCompatActivity() {
         return fr
     }
 
-    fun saveData(res: String, userName: String) {
+    private fun saveData(res: String, userName: String) {
         val editor = pref?.edit()
         editor?.putString("phone", res)
         editor?.putString("username", userName)
         editor?.apply()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        myBdManager.openDb()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        myBdManager.closeDb()
     }
 }

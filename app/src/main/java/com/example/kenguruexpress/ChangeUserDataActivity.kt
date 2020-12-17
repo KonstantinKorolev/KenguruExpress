@@ -59,6 +59,7 @@ class ChangeUserDataActivity : AppCompatActivity() {
 
         cancelBtn.setOnClickListener {
             onBackPressed()
+            finish()
         }
 
         confirmDataChangesBtn.setOnClickListener {

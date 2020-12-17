@@ -1,18 +1,25 @@
 package com.example.kenguruexpress
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.kenguruexpress.api.UserApi
+import com.example.kenguruexpress.db.DbIdManager
+import com.example.kenguruexpress.models.email_activation.emailActivationRequest
 import com.example.kenguruexpress.models.users.RegistrationRequest
 import com.example.kenguruexpress.models.users.ReqistrationResponse
 import kotlinx.android.synthetic.main.activity_register.*
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
+
+    val myDbManger = DbIdManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,12 +27,14 @@ class RegisterActivity : AppCompatActivity() {
 
         cancelRegisterBtn.setOnClickListener {
             onBackPressed()
+            finish()
         }
         initAction()
     }
 
     private fun initAction() {
         registerBtn.setOnClickListener {
+            val pattern = """\w[a-z]""".toRegex()
             if (emailRegisterEditText.text.isEmpty()) {
                 emailRegisterEditText.error = "Введите Email"
                 emailRegisterEditText.requestFocus()
@@ -34,7 +43,14 @@ class RegisterActivity : AppCompatActivity() {
                 passwordRegisterEditText.error = "Введите пароль"
                 passwordRegisterEditText.requestFocus()
                 return@setOnClickListener
+            } else if (passwordRegisterEditText.text.length < 8){
+                passwordRegisterEditText.error = "Пароль должен состоять минимум из 8 символов"
+                passwordRegisterEditText.requestFocus()
+            } else if (!pattern.containsMatchIn(passwordRegisterEditText.text)) {
+                passwordRegisterEditText.error = "Пароль должен состоять из одной a-z и A-Z"
+                passwordRegisterEditText.requestFocus()
             } else {
+                // Вызывает метод регистрации почты пользователя
                 registration()
             }
         }
@@ -58,6 +74,8 @@ class RegisterActivity : AppCompatActivity() {
                 }
                 if (user != null) {
                     Toast.makeText(applicationContext, "Регистрация прошла успешна", Toast.LENGTH_SHORT).show()
+                    // Сохранение email и id в базу данных
+                    saveToDb(user.email.toString(), user.id!!)
                     Log.i("email", response.code().toString())
                     Log.i("email", user.email.toString())
                     Log.i("id", user.id.toString())
@@ -70,6 +88,16 @@ class RegisterActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun saveToDb(email: String, id: Int) {
+        myDbManger.openDb()
+        myDbManger.insertToDb(email, id)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        myDbManger.closeDb()
     }
 }
 

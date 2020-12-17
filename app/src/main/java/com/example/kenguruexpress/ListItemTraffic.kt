@@ -1,6 +1,6 @@
 package com.example.kenguruexpress
 
-data class ListItemRc (
+data class ListItemTraffic (
         var companyName: String,
         var deliveryPeriod: Int,
         var priceDelivery: Int,

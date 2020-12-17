@@ -4,9 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowTariffsActivity">
+    tools:context=".fragments.DispatchFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addrFloatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/material_blue"
+        app:elevation="6dp"
+        app:fabSize="normal" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,22 +29,31 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tarrifTextView"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
         android:layout_marginLeft="155dp"
         android:layout_marginTop="45dp"
-        android:text="Тарифы"
+        android:text="Адреса"
         android:textColor="@color/white"
         android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/addrBookEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="310dp"
+        android:text="Ваша адресная книга пуста"
+        android:layout_marginLeft="115dp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcViewTarrif"
+            android:id="@+id/rcViewAddr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp" />

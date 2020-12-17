@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.kenguruexpress.R
-import kotlinx.android.synthetic.main.dispatch_dialog.*
 import kotlinx.android.synthetic.main.dispatch_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_dispatch.*
 

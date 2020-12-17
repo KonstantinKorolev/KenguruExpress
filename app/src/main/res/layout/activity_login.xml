@@ -5,9 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/material_blue"
-    tools:context=".fragments.LkFragment">
+    tools:context=".LoginActivity">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/acceptEmailBtn"
+        style="@style/MyBordelessButtonStyle"
+        android:layout_width="189dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:insetBottom="9dp"
+        android:text="Подтвердить Email"
+        app:backgroundTint="@color/material_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toRegisterBtn" />
 
     <TextView
         android:id="@+id/textView3"
@@ -29,6 +42,7 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/white"
         android:hint="Email"
+        android:text="xolir84324@cctyoo.com"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -43,6 +57,7 @@
         android:layout_marginTop="24dp"
         android:backgroundTint="@color/white"
         android:hint="Пароль"
+        android:text="20012GPStka"
         android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -70,12 +85,11 @@
         style="@style/MyBordelessButtonStyle"
         android:layout_width="163dp"
         android:layout_height="41dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         android:insetBottom="9dp"
         android:text="Регистрация"
         app:backgroundTint="@color/material_blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLoginEditText" />
 
@@ -84,14 +98,14 @@
         style="@style/MyBordelessButtonStyle"
         android:layout_width="197dp"
         android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:insetBottom="9dp"
         android:text="Забыли пароль?"
         app:backgroundTint="@color/material_blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toRegisterBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/acceptEmailBtn" />
 
     <Button
         android:id="@+id/resendEmail"
@@ -102,21 +116,6 @@
         android:insetBottom="9dp"
         android:text="Переотправить письмо на Email "
         android:textSize="12sp"
-        app:backgroundTint="@color/material_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activationEmailBtn" />
-
-    <Button
-        android:id="@+id/activationEmailBtn"
-        style="@style/MyBordelessButtonStyle"
-        android:layout_width="236dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="12dp"
-        android:insetBottom="9dp"
-        android:text="Подтвердить Email"
-        android:textSize="14sp"
         app:backgroundTint="@color/material_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

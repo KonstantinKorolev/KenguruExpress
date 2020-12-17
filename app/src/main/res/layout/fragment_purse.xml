@@ -99,7 +99,7 @@
         tools:ignore="UnknownId" />
 
     <EditText
-        android:id="@+id/similarGoods"
+        android:id="@+id/similarGoodsAdd"
         android:layout_width="255dp"
         android:layout_height="39dp"
         android:layout_marginTop="32dp"

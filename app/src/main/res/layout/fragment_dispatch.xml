@@ -11,11 +11,11 @@
         android:id="@+id/include2"
         layout="@layout/dispatch_header_menu" />
 
-    <RelativeLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="120dp">
-    </RelativeLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/dispatchFloatingButton"
@@ -25,7 +25,7 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:src="@android:drawable/ic_input_add"
+        android:src="@android:drawable/ic_menu_search"
         app:backgroundTint="@color/material_blue"
         app:fabSize="normal"
         app:elevation="6dp"
