@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/dialog_cargo_width"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="@string/cargoWidth"
+                android:inputType="number"
+                android:layout_marginStart="10dp" />
+
+            <EditText
+                android:id="@+id/dialog_cargo_height"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:hint="@string/cargoHeight"
+                android:inputType="number"
+                android:layout_marginStart="10dp" />
+
+            <EditText
+                android:id="@+id/dialog_cargo_lenght"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:hint="@string/cargoLength"
+                android:inputType="number"
+                android:layout_marginStart="10dp" />
+
+            <EditText
+                android:id="@+id/dialog_cargo_weight"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:hint="@string/cargoWeight"
+                android:inputType="number"
+                android:layout_marginStart="10dp" />
+
+            <Button
+                android:id="@+id/cargo_enter_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/material_blue"
+                android:text="@string/enterBtnDialog" />
+
+            <Button
+                android:id="@+id/cargo_cancel_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="35dp"
+                android:backgroundTint="@color/material_blue"
+                android:text="@string/cancelBtn"
+                android:layout_marginStart="35dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

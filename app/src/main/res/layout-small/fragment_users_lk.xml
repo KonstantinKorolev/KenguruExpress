@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".fragments.UsersLkFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="162dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/lk_header_menu" />
+
+            <TextView
+                android:id="@+id/emailUserLk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="85dp"
+                android:text="-"
+                android:textColor="@color/material_blue"
+                android:textSize="16sp"
+                android:layout_marginStart="85dp" />
+
+            <TextView
+                android:id="@+id/nameUserLk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="85dp"
+                android:text="-"
+                android:textColor="@color/material_blue"
+                android:textSize="16sp"
+                android:layout_marginStart="85dp" />
+
+            <TextView
+                android:id="@+id/phoneUserLk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="85dp"
+                android:text="-"
+                android:textColor="@color/material_blue"
+                android:textSize="16sp"
+                android:layout_marginStart="85dp" />
+
+            <Button
+                android:id="@+id/changeUserInfo"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="40dp"
+                android:backgroundTint="@color/material_blue"
+                android:text="@string/changeDataBtn" />
+
+            <Button
+                android:id="@+id/changeUserAddres"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="40dp"
+                android:backgroundTint="@color/material_blue"
+                android:text="@string/editAddressBtn" />
+
+            <Button
+                android:id="@+id/settingsBtn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="40dp"
+                android:backgroundTint="@color/material_blue"
+                android:text="@string/settingsBtn" />
+
+            <Button
+                android:id="@+id/lkExitBtn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="40dp"
+                android:backgroundTint="@color/material_blue"
+                android:text="@string/lkExitBtn" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

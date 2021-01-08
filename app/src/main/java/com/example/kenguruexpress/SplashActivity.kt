@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
@@ -20,6 +21,10 @@ class SplashActivity : AppCompatActivity() {
         val splashScreenDuration = getSplashScreenDuration()
         Handler().postDelayed(
             {
+                if (progressBar != null) {
+                    progressBar.visibility = View.GONE
+                }
+
                 progressBar.max = 10
                 val currentProgress = 10
 

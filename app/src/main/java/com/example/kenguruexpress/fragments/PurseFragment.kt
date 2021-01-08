@@ -25,7 +25,6 @@ import com.example.kenguruexpress.models.products.CreateProductResponse
 import kotlinx.android.synthetic.main.cargo_dialog.view.*
 import kotlinx.android.synthetic.main.documents_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_purse.*
-import kotlinx.android.synthetic.main.fragment_purse.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -125,6 +124,13 @@ class PurseFragment : Fragment() {
             } else if (cityReceivingCompleteTextView.text.isEmpty()) {
                 cityReceivingCompleteTextView.error = "Введите город получения"
                 cityReceivingCompleteTextView.requestFocus()
+
+            } else if (similarGoodsAdd.text.isEmpty()) {
+                similarGoodsAdd.error = "Введите количество товаров"
+                similarGoodsAdd.requestFocus()
+            } else if (similarGoodsAdd.text.toString() == "0" || similarGoodsAdd.text.isEmpty()) {
+                similarGoodsAdd.error = "Товаров может быть минимум 1"
+                similarGoodsAdd.requestFocus()
             } else {
                 getIdData(cityReceivingCompleteTextView.text.toString(), context!!, true)
                 getIdData(cityDispatchCompleteTextView.text.toString(), context!!, false)

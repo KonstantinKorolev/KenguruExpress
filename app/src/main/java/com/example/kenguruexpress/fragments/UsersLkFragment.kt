@@ -23,6 +23,7 @@ class UsersLkFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var sessionManager : SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,7 @@ class UsersLkFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        sessionManager = SessionManager(context!!)
         return inflater.inflate(R.layout.fragment_users_lk, container, false)
     }
 
@@ -57,6 +59,19 @@ class UsersLkFragment : Fragment() {
             i.putExtra("email", emailUserLk.text)
             startActivity(i)
         }
+
+        settingsBtn.setOnClickListener {
+            val i = Intent(context, SettingsActivity::class.java)
+            startActivity(i)
+        }
+
+        lkExitBtn.setOnClickListener {
+            val i = Intent(context, LoginActivity::class.java)
+            // удаляем токен и переправляем пользователя на LoginActivity
+            sessionManager.deleteAuthToken()
+            startActivity(i)
+        }
+
     }
 
     companion object {

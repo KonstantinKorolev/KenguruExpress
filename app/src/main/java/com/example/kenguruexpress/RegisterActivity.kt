@@ -1,18 +1,14 @@
 package com.example.kenguruexpress
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.example.kenguruexpress.api.UserApi
 import com.example.kenguruexpress.db.DbIdManager
-import com.example.kenguruexpress.models.email_activation.emailActivationRequest
 import com.example.kenguruexpress.models.users.RegistrationRequest
 import com.example.kenguruexpress.models.users.ReqistrationResponse
 import kotlinx.android.synthetic.main.activity_register.*
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

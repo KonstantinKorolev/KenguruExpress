@@ -1,13 +1,14 @@
 package com.example.kenguruexpress
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
-import com.example.kenguruexpress.adapters.AddressAdapter
 import com.example.kenguruexpress.api.UserApi
 import com.example.kenguruexpress.models.email_activation.emailActivationRequest
 import com.example.kenguruexpress.models.login.LoginRequest
@@ -24,11 +25,22 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
     private lateinit var sessionManager : SessionManager
 
+    var pref: SharedPreferences? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         sessionManager = SessionManager(this)
+
+        pref = getSharedPreferences("TABLE", Context.MODE_PRIVATE)
+
+        // Проверяем, сохранены ли данные о пользователе
+        if (pref?.getString("email", null) != null
+                && pref?.getString("password", null) != null) {
+            login(pref?.getString("email", null)!!,
+                    pref?.getString("password", null)!!, false)
+        }
 
         toRegisterBtn.setOnClickListener {  // Переход к RegisterActivity
             val i = Intent(this, RegisterActivity::class.java)
@@ -45,8 +57,13 @@ class LoginActivity : AppCompatActivity() {
                 passwordLoginEditText.error = "Введите пароль"
                 passwordLoginEditText.requestFocus()
             } else {
-                login(email, password) // Вызовется функция login отвечающая за процесс входа в аккаунт
-                finish()
+                if (checkBox.isActivated) {
+                    login(email, password, true)
+                    finish()
+                } else {
+                    login(email, password, false) // Вызовется функция login отвечающая за процесс входа в аккаунт
+                    finish()
+                }
             }
         }
 
@@ -103,7 +120,7 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun login(email: String, password: String) { // функция для входа в личный кабинет
+    private fun login(email: String, password: String, rememberMe: Boolean) { // функция для входа в личный кабинет
         var userLoginBool = false
         val request = LoginRequest()
         request.email = email
@@ -123,6 +140,9 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, response.errorBody().toString(),
                         Toast.LENGTH_SHORT).show()
                 } else {
+                    if (rememberMe) {
+                        saveEmailAndPass(email, password)
+                    }
                     userLoginBool = true
                     val i = Intent(applicationContext, MainActivity::class.java)
                     i.putExtra("userLogging", userLoginBool)
@@ -164,5 +184,12 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "API call failed", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun saveEmailAndPass(email: String, password: String) {
+        val editor = pref?.edit()
+        editor?.putString("email", email)
+        editor?.putString("password", password)
+        editor?.apply()
     }
 }

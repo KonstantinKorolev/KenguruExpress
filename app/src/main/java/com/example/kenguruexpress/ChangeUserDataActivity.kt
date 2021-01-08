@@ -33,27 +33,7 @@ class ChangeUserDataActivity : AppCompatActivity() {
                 val phone = changeDataPhone.text.toString().trim()
                 registerPhone(phone)
 
-                val cDialogView = LayoutInflater.from(this).inflate(R.layout.phone_activation_dialog, null)
-                val cBuilder = AlertDialog.Builder(this)
-                        .setView(cDialogView)
-                        .setTitle("Введите код из СМС")
-                val cAlertDialog = cBuilder.show()
-
-                cDialogView.phonact_cancel_btn.setOnClickListener {
-                    cAlertDialog.dismiss()
-                }
-
-                cDialogView.phonact_enter_btn.setOnClickListener {
-                    if (phoneActivationCode.text.isEmpty()) {
-                        phoneActivationCode.error = "Введите код"
-                        phoneActivationCode.requestFocus()
-                    } else {
-                        val code = phoneActivationCode.text.toString().trim()
-                        // функция подтверждения телефона
-                        activationPhone(phone, code)
-                        cAlertDialog.dismiss()
-                    }
-                }
+                showDialog(phone)
             }
         }
 
@@ -110,6 +90,30 @@ class ChangeUserDataActivity : AppCompatActivity() {
         })
     }
 
+    private fun showDialog(phone: String) {
+        val cDialogView = LayoutInflater.from(this).inflate(R.layout.phone_activation_dialog, null)
+        val cBuilder = AlertDialog.Builder(this)
+                .setView(cDialogView)
+                .setTitle("Введите код из СМС")
+        val cAlertDialog = cBuilder.show()
+
+        cDialogView.phonact_cancel_btn.setOnClickListener {
+            cAlertDialog.dismiss()
+        }
+
+        cDialogView.phonact_enter_btn.setOnClickListener {
+            if (cDialogView.phoneActivationCode.text.isEmpty()) {
+                cDialogView.phoneActivationCode.error = "Введите код"
+                cDialogView.phoneActivationCode.requestFocus()
+            } else {
+                val code = cDialogView.phoneActivationCode.text.toString().trim()
+                // функция подтверждения телефона
+                activationPhone(phone, code)
+                cAlertDialog.dismiss()
+            }
+        }
+    }
+
     private fun activationPhone(phone: String, code: String) {
         val request = PhoneActivationRequest()
         request.phone = phone
@@ -124,6 +128,7 @@ class ChangeUserDataActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT).show()
                  val i = Intent(applicationContext, MainActivity::class.java)
                  i.putExtra("phone", phone)
+                 startActivity(i)
              } else if (result == 400) {
                  Toast.makeText(applicationContext, "Неверный код",
                                     Toast.LENGTH_SHORT).show()
@@ -143,14 +148,17 @@ class ChangeUserDataActivity : AppCompatActivity() {
             override fun onResponse(call: Call<changeUserInfResponse>, response: Response<changeUserInfResponse>) {
                 val code = response.code()
                 val res = response.body()
+                val i = Intent(applicationContext, MainActivity::class.java)
                 if (code == 200) {
-                    val i = Intent(applicationContext, MainActivity::class.java)
                     i.putExtra("first_name", res?.first_name)
                     i.putExtra("last_name", res?.last_name)
                     i.putExtra("patronymic", res?.patronymic)
                     Toast.makeText(applicationContext, "Данные успешно изменены",
                             Toast.LENGTH_SHORT).show()
                     onBackPressed()
+                } else if (code == 503) {
+                    Toast.makeText(applicationContext, "Сервис временно недоступен",
+                            Toast.LENGTH_SHORT).show()
                 }
             }
 

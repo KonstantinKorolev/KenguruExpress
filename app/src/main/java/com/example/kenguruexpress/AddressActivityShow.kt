@@ -83,7 +83,7 @@ class AddressActivityShow : AppCompatActivity() {
         if (contactList.isEmpty()) {
             return
         } else {
-            addrBookEmpty.visibility = View.INVISIBLE
+            addrBookEmpty.visibility = View.GONE
             rcViewAddr.hasFixedSize()
             rcViewAddr.layoutManager = LinearLayoutManager(this)
             adapter = AddressAdapter(contactList, this)
@@ -141,6 +141,7 @@ class AddressActivityShow : AppCompatActivity() {
                                 contactList.add(ListItemAddress(res.id!!.toString(), res.locality!!, res.street!!,
                                         res.house!!, res.flat!!, res.index_number!!, res.surname!!, res.name!!,
                                         res.patronymic!!, res.company!!, res.phone!!, res.phone_extension!!, res.comment!!))
+                                Toast.makeText(applicationContext, "Контакт успешно создан", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }

@@ -8,10 +8,7 @@ import android.text.TextWatcher
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.example.kenguruexpress.api.AddressBookApi
 import com.example.kenguruexpress.api.GeographyApi
-import com.example.kenguruexpress.models.contacts.PostContactsRequest
-import com.example.kenguruexpress.models.contacts.PostContactsResponse
 import com.example.kenguruexpress.models.locality.CityLocal
 import com.example.kenguruexpress.models.locality.HouseLocal
 import com.example.kenguruexpress.models.locality.StreetLocal

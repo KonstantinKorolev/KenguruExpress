@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/dialog_cargo_height"
+        android:hint="@string/cargoHeight"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/dialog_cargo_width"
+        android:hint="@string/cargoWidth"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/dialog_cargo_weight"
+        android:hint="@string/cargoWeight"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/dialog_cargo_lenght"
+        android:hint="@string/cargoLength"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center" >
+        <Button
+            android:id="@+id/cargo_cancel_btn"
+            android:text="@string/cancelBtn"
+            android:backgroundTint="@color/material_blue"
+            android:layout_width="150dp"
+            android:textSize="25sp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/cargo_enter_btn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:backgroundTint="@color/material_blue"
+            android:text="@string/enterBtnDialog"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+</LinearLayout>

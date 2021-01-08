@@ -3,19 +3,19 @@
     <item
         android:id="@+id/ic_purse"
         android:icon="@drawable/ic_purse"
-        android:title="Доставка"
+        android:title="@string/dispatchBar"
         />
 
     <item
         android:id="@+id/ic_dispatch"
         android:icon="@drawable/ic_dispatch"
-        android:title="Мои отправления"
+        android:title="@string/receiveBar"
         />
 
     <item
         android:id="@+id/ic_lka"
         android:icon="@drawable/ic_lk"
-        android:title="Личный кабинет"
+        android:title="@string/lkBar"
         />
 
 

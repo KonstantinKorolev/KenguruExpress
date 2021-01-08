@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.PurseFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <AutoCompleteTextView
+        android:id="@+id/cityDispatchCompleteTextView"
+        android:layout_width="500dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginRight="101dp"
+        android:hint="@string/cityDispatchHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+    <TextView
+        android:id="@+id/textToDoor2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="172dp"
+        android:layout_marginLeft="172dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/fromDoorToWarehouse"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textToDoor" />
+
+    <Switch
+        android:id="@+id/switchToDoor2"
+        android:layout_width="72dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginRight="127dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textToDoor2"
+        app:layout_constraintTop_toBottomOf="@+id/switchToDoor"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Switch
+        android:id="@+id/switchToDoor"
+        android:layout_width="71dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginRight="127dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toEndOf="@+id/textToDoor"
+        app:layout_constraintTop_toBottomOf="@+id/cityReceivingCompleteTextView"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <TextView
+        android:id="@+id/textToDoor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="172dp"
+        android:layout_marginLeft="172dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/fromWarehouseToDoor"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cityReceivingCompleteTextView" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="500dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="64dp"
+        android:entries="@array/shipmentNames"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textToDoor2" />
+
+    <Button
+        android:id="@+id/countBtn"
+        android:layout_width="282dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="260dp"
+        android:text="@string/calculateBtn"
+        android:textSize="25sp"
+        app:backgroundTint="@color/material_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+        tools:ignore="UnknownId" />
+
+    <EditText
+        android:id="@+id/similarGoodsAdd"
+        android:layout_width="500dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/similarGoodsHint"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+
+    <AutoCompleteTextView
+        android:id="@+id/cityReceivingCompleteTextView"
+        android:layout_width="500dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="105dp"
+        android:layout_marginRight="105dp"
+        android:layout_marginBottom="44dp"
+        android:hint="@string/receivingCityHint"
+        app:layout_constraintBottom_toTopOf="@+id/textToDoor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cityDispatchCompleteTextView" />
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/purse_header_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

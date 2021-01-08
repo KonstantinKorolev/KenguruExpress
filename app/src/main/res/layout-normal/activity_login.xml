@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_blue"
+    tools:context=".LoginActivity">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/acceptEmailBtn"
+        style="@style/MyBordelessButtonStyle"
+        android:layout_width="189dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:insetBottom="9dp"
+        android:text="@string/acceptEmail"
+        app:backgroundTint="@color/material_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toRegisterBtn" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:text="@string/enterTitle"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/emailLoginEditText"
+        android:layout_width="251dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/emailHint"
+        android:text="xolir84324@cctyoo.com"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/passwordLoginEditText"
+        android:layout_width="251dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/passwordHint"
+        android:text="20012GPStka"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailLoginEditText" />
+
+    <Button
+        android:id="@+id/loginBtn"
+
+        android:layout_width="143dp"
+        android:layout_height="69dp"
+        android:insetBottom="9dp"
+        android:text="@string/enterBtn"
+        android:textSize="20dp"
+        app:backgroundTint="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resendEmail"
+        app:layout_constraintVertical_bias="0.107" />
+
+    <Button
+        android:id="@+id/toRegisterBtn"
+        style="@style/MyBordelessButtonStyle"
+        android:layout_width="163dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="12dp"
+        android:insetBottom="9dp"
+        android:text="@string/registerBtn"
+        app:backgroundTint="@color/material_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <Button
+        android:id="@+id/forgetPasswordBtn"
+        style="@style/MyBordelessButtonStyle"
+        android:layout_width="197dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:insetBottom="9dp"
+        android:text="@string/forgetPassword"
+        app:backgroundTint="@color/material_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acceptEmailBtn" />
+
+    <Button
+        android:id="@+id/resendEmail"
+        style="@style/MyBordelessButtonStyle"
+        android:layout_width="236dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:insetBottom="9dp"
+        android:text="@string/resendEmail"
+        android:textSize="12sp"
+        app:backgroundTint="@color/material_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgetPasswordBtn" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="134dp"
+        android:layout_marginLeft="134dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="134dp"
+        android:layout_marginRight="134dp"
+        android:text="@string/rememberMe"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLoginEditText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

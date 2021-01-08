@@ -43,18 +43,29 @@ class MainActivity : AppCompatActivity() {
         val firstName = intent.getStringExtra("first_name")
         val lastName = intent.getStringExtra("last_name")
         val patronymic = intent.getStringExtra("patronymic")
-        userName = "$firstName" + "$lastName" + "$patronymic"
 
-        if (phone == null) {
-            phone = "-"
-        }
-
-        if (firstName == null && lastName == null && patronymic == null) {
+        if (firstName == null && lastName == null && patronymic == null
+                && pref?.getString("username", userName) == null) {
             userName = "-"
+            saveDataUserName(userName!!)
+        } else if (firstName != null && lastName != null && patronymic != null
+                && pref?.getString("username", userName) == "-") {
+            saveDataUserName(userName!!)
+        } else if (firstName != null && lastName != null && patronymic != null
+                && pref?.getString("username", userName) != "-") {
+            saveDataUserName(userName!!)
         }
 
-        saveData(phone!!, userName!!)
+        if (phone == null && pref?.getString("phone", phone) == null) {
+            phone = "-"
+            saveDataPhone(phone!!)
+        } else if (phone != null && pref?.getString("phone", phone) == "-") {
+            saveDataPhone(phone!!)
+        } else if (phone != null && pref?.getString("phone", phone) != "-") {
+            saveDataPhone(phone!!)
+        }
 
+        // переключение между фрагментами путём нажатия на BottomNavBar
         if (userLoginBool) {
             bottom_navigation.setOnNavigationItemSelectedListener {
                 when (it.itemId) {
@@ -68,7 +79,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) { // Функция перехода с одного фрагмента на другой с помощью, bottom bar'a
+    // Функция перехода с одного фрагмента на другой с помощью, bottom bar'a
+    private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
         transaction.commit()
@@ -84,10 +96,15 @@ class MainActivity : AppCompatActivity() {
         return fr
     }
 
-    private fun saveData(res: String, userName: String) {
+    private fun saveDataUserName(userName: String) {
         val editor = pref?.edit()
-        editor?.putString("phone", res)
         editor?.putString("username", userName)
+        editor?.apply()
+    }
+
+    private fun saveDataPhone(phone: String) {
+        val editor = pref?.edit()
+        editor?.putString("phone", phone)
         editor?.apply()
     }
 

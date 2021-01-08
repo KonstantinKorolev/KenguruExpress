@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.PurseFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/purse_header_menu" />
+
+            <AutoCompleteTextView
+                android:id="@+id/cityDispatchCompleteTextView"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/cityDispatchHint"
+                android:layout_marginStart="15dp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/cityReceivingCompleteTextView"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/receivingCityHint"
+                android:layout_marginStart="15dp" />
+
+            <TextView
+                android:id="@+id/textToDoor"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/fromWarehouseToDoor"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/switchToDoor"
+                android:layout_width="wrap_content"
+                android:layout_height="31dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="5dp"
+                android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="36sp"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <TextView
+                android:id="@+id/textToDoor2"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/fromDoorToWarehouse"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Switch
+                android:id="@+id/switchToDoor2"
+                android:layout_width="wrap_content"
+                android:layout_height="31dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="5dp"
+                android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="36sp"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <EditText
+                android:id="@+id/similarGoodsAdd"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="@string/similarGoodsHint"
+                android:inputType="number" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:entries="@array/shipmentNames" />
+
+            <Button
+                android:id="@+id/countBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/calculateBtn"
+                app:backgroundTint="@color/material_blue"
+                tools:ignore="UnknownId" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

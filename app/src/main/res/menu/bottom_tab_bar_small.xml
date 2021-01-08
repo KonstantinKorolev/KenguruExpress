@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_purse"
+        android:icon="@drawable/ic_purse"
+        android:title="" />
+
+    <item
+        android:id="@+id/ic_dispatch"
+        android:icon="@drawable/ic_dispatch"
+        android:title="" />
+
+    <item
+        android:id="@+id/ic_lka"
+        android:icon="@drawable/ic_lk"
+        android:title="" />
+
+</menu>

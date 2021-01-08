@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddOrChangeAddressActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="565dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="411dp"
+                android:layout_height="121dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="275dp"
+                android:layout_marginRight="275dp"
+                android:text="@string/cngAddressContact"
+                android:textColor="@color/material_blue"
+                android:textSize="45sp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/cityAuthoCompleteAddr"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:hint="@string/cngAddressCity" />
+
+            <AutoCompleteTextView
+                android:id="@+id/streetAuthoCompleteAddr"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:hint="@string/cngAddressStreet" />
+
+            <AutoCompleteTextView
+                android:id="@+id/houseAuthoCompleteAddr"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:hint="@string/cngAddressHome" />
+
+            <EditText
+                android:id="@+id/editFlat"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:ems="10"
+                android:hint="@string/cngAddressFlat"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editIndex"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:ems="10"
+                android:hint="@string/cngAddressIndex"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editSurname"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:ems="10"
+                android:hint="@string/cngAddressSurname"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:ems="10"
+                android:hint="@string/cngAddressName"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editPatronymic"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:ems="10"
+                android:hint="@string/cngAddressPatronimyc"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editCompany"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:ems="10"
+                android:hint="@string/cngAddressCompany"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editPhone"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:ems="10"
+                android:hint="@string/cngAddressPhone"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/editDopPhone"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:ems="10"
+                android:hint="@string/cngAddressDopPhone"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/editComment"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginRight="280dp"
+                android:ems="10"
+                android:hint="@string/cngAddressComment"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/addresCancelBtnAddr"
+                android:layout_width="201dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="190dp"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="31dp"
+                android:layout_marginEnd="381dp"
+                android:layout_marginRight="381dp"
+                android:backgroundTint="@color/material_blue"
+                android:text="@string/returnBtn"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/addresAgreeBtnAddr"
+                android:layout_width="201dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="190dp"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="379dp"
+                android:layout_marginRight="379dp"
+                android:backgroundTint="@color/material_blue"
+                android:text="@string/agreeBtn"
+                android:textSize="35sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

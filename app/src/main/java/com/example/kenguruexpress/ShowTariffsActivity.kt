@@ -3,47 +3,98 @@ package com.example.kenguruexpress
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import okhttp3.*
-import java.util.concurrent.TimeUnit
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kenguruexpress.adapters.TarrifsAdapter
+import com.example.kenguruexpress.models.websocket.WebSocketResponse
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import kotlinx.android.synthetic.main.activity_show_tariffs.*
+import org.java_websocket.client.WebSocketClient
+import org.java_websocket.handshake.ServerHandshake
+import java.lang.Exception
+import java.net.URI
 
 class ShowTariffsActivity : AppCompatActivity() {
 
-    var trafficList: ArrayList<WebSocketResponse> = arrayListOf()
+    var tariffList : ArrayList<WebSocketResponse> = arrayListOf()
+
+    private lateinit var webSocketClient: WebSocketClient
+
+    var adapterTarrif: TarrifsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_tariffs)
 
-        val departureId = intent.getStringExtra("id")
-        val defaultWebSocket = "ws://68.183.30.45/ws/calculation/${departureId}/"
+        initWebSocket()
 
-        val client = OkHttpClient.Builder()
-            .readTimeout(3, TimeUnit.SECONDS)
-            .build()
-        val request = Request.Builder()
-            .url(defaultWebSocket)
-            .build()
-        val wsListener = WebSocketList()
-        val webSocket = client.newWebSocket(request, wsListener)
+        rcViewTarrif.hasFixedSize()
+        rcViewTarrif.layoutManager = LinearLayoutManager(this)
+        adapterTarrif = TarrifsAdapter(tariffList, this)
+        rcViewTarrif.adapter = adapterTarrif
     }
 
-    private class WebSocketList: WebSocketListener() {
-        override fun onMessage(webSocket: WebSocket, text: WebSocketResponse?) {
-            // дописать получения данных с сервера
-            val trafficListResponse = ShowTariffsActivity()
-            trafficListResponse.trafficList = // ..
-        }
+    private fun initWebSocket() {
+        val departureId = intent.getIntExtra("id", 0)
+        val webSocketUrl = "ws://68.183.30.45/ws/calculation/408/"
 
-        override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-            webSocket.close(NORMAL_CLOSURE_STATUS, null)
-        }
+        val coinbaseUri = URI(webSocketUrl)
+        createWebSocketClient(coinbaseUri)
+        webSocketClient.connect()
+    }
 
-        override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-            Log.d("WebSocket", t.message.toString())
-        }
+    private fun createWebSocketClient(coinbaseUri: URI?) {
+        webSocketClient = object : WebSocketClient(coinbaseUri) {
+            override fun onOpen(handshakedata: ServerHandshake?) {
+                Log.d(TAG, "onOpen")
+            }
 
-        companion object {
-            private val NORMAL_CLOSURE_STATUS = 1000
+            override fun onMessage(message: String?) {
+                Log.d(TAG, "onMessage: $message")
+                getTarrifList(message)
+            }
+
+            override fun onClose(code: Int, reason: String?, remote: Boolean) {
+                Log.d(TAG, "onClose")
+            }
+
+            override fun onError(ex: Exception?) {
+                Log.d(TAG, "onError: ${ex?.message}")
+            }
+
         }
+    }
+
+    private fun getTarrifList(message: String?) {
+        message?.let {
+            val moshi = Moshi.Builder()
+                    .build()
+            val adapter: JsonAdapter<WebSocketResponse> = moshi.adapter(WebSocketResponse::class.java)
+            val tarrList = adapter.fromJson(message)
+            if (tarrList != null && tarrList.completed != true) {
+                tariffList.add(tarrList)
+            } else {
+                runOnUiThread {
+                    adapterTarrif?.updateAdapter(tariffList)
+                }
+                webSocketClient.close()
+                if (tariffList.isEmpty()) {
+                    emptyTariffsTitle.text = this.resources.getString(R.string.emptyTariffs)
+                    emptyTariffsTitle.visibility = View.VISIBLE
+                } else {
+                    emptyTariffsTitle.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    companion object {
+        const val TAG = "WebSocket"
+    }
+
+    override fun onPause() {
+        super.onPause()
+        webSocketClient.close()
     }
 }

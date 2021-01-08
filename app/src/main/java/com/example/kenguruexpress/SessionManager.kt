@@ -3,9 +3,7 @@ package com.example.kenguruexpress
 import android.content.Context
 import android.content.SharedPreferences
 
-/**
- * Session manager to save and fetch data from SharedPreferences
- */
+// Диспетчер сеансов для сохранения и извлечения данных из SharedPreferences
 class SessionManager (context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name),
             Context.MODE_PRIVATE)
@@ -14,19 +12,22 @@ class SessionManager (context: Context) {
         const val USER_TOKEN = "user_token"
     }
 
-    /**
-     * Function to save auth token
-     */
+    // Функция сохранения токена
     fun saveAuthToken(token: String) {
         val editor = prefs.edit()
         editor.putString(USER_TOKEN, token)
         editor.apply()
     }
 
-    /**
-     * Function to fetch auth token
-     */
+    // Функция для получения токена
     fun fetchAuthToken(): String? {
         return prefs.getString(USER_TOKEN, null)
+    }
+
+    // Функция для удаления токена
+    fun deleteAuthToken() {
+        val editor = prefs.edit()
+        editor.remove(USER_TOKEN)
+        editor.apply()
     }
 }
