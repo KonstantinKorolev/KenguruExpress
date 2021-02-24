@@ -97,6 +97,7 @@ class AddressActivityShow : AppCompatActivity() {
         myBdManager.closeDb()
     }
 
+    // получение id пользователя
     private fun getIdInDb(email: String): Int {
         var id = 0
 
@@ -112,6 +113,7 @@ class AddressActivityShow : AppCompatActivity() {
         return id
     }
 
+    // Отправка данных о пользователе
     private fun postContact(locality: Int, street: String, house: String, flat: String,
                             index: String, surname: String, name: String, patronymic: String,
                             company: String, phone: String, phone_extension: String, comment: String, profile_id: Int) {
@@ -152,6 +154,7 @@ class AddressActivityShow : AppCompatActivity() {
                 })
     }
 
+    // получение информации о пользователе
     private fun getContacts(profile_id: Int) {
         RetrofitClient().getRetrofitClient(this).create(AddressBookApi::class.java)
                 .getUserContacts(profile_id.toString(), 1, 10).enqueue(object : Callback<ArrayList<getContactsResponse>>{
@@ -183,28 +186,10 @@ class AddressActivityShow : AppCompatActivity() {
 
     }
 
+    // сохранение email
     private fun saveEmail(email: String) {
         val editor = pref?.edit()
         editor?.putString("email", email)
-        editor?.apply()
-    }
-
-    private fun saveData(cityId: Int, street: String, house: String, flat: String, index: String,
-                         surname: String, name: String, patronymic: String, company: String,
-                         phone: String, phone_extension: String, comment: String) {
-        val editor = pref?.edit()
-        editor?.putInt("cityId", cityId)
-        editor?.putString("street", street)
-        editor?.putString("house", house)
-        editor?.putString("flat", flat)
-        editor?.putString("index", index)
-        editor?.putString("surname", surname)
-        editor?.putString("name", name)
-        editor?.putString("patronymic", patronymic)
-        editor?.putString("company", company)
-        editor?.putString("phone", phone)
-        editor?.putString("phone_extension", phone_extension)
-        editor?.putString("comment", comment)
         editor?.apply()
     }
 

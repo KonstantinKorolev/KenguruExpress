@@ -165,6 +165,7 @@ class PurseFragment : Fragment() {
         }
     }
 
+    // получение данных о городе
     private fun retrieveCityData(s: String, context: Context, isAdapter: Boolean) {
 
         RetrofitClient().getRetrofitClient(context).create(GeographyApi::class.java)
@@ -192,6 +193,7 @@ class PurseFragment : Fragment() {
                 })
     }
 
+    // получение id города
     private fun getIdData(city: String, context: Context, isCity: Boolean) {
         RetrofitClient().getRetrofitClient(context).create(GeographyApi::class.java)
             .getCityLocality(city, 1).enqueue(object : Callback<ArrayList<CityLocal>>{
@@ -219,6 +221,7 @@ class PurseFragment : Fragment() {
             })
     }
 
+    // показ диалога
     private fun showDialog() {
         val selectedSpinnerItem = spinner.selectedItem.toString()
 
@@ -271,6 +274,7 @@ class PurseFragment : Fragment() {
         }
     }
 
+    // создать груз
     private fun createProduct(product: String, context: Context) {
         if (product == "Груз") {
             val request = CreateProductRequest()
@@ -299,6 +303,7 @@ class PurseFragment : Fragment() {
         }
     }
 
+    // создать перевозку
     private fun createDeparture(context: Context) {
         val request = postDepartureRequest()
         request.receiver_city = cityIdReceiving

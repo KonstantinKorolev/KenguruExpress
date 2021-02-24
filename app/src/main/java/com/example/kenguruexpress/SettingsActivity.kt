@@ -33,8 +33,11 @@ class SettingsActivity : AppCompatActivity() {
 
         if (isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            NightThemeBtn.text = R.string.EnableLightTheme.toString()
+            // дополнить изменения цвета
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            NightThemeBtn.text = R.string.nightThemeBtn.toString()
         }
 
         if (isNightModeOn) {

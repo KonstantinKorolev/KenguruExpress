@@ -35,6 +35,7 @@ class ShowTariffsActivity : AppCompatActivity() {
         rcViewTarrif.adapter = adapterTarrif
     }
 
+    // функция подключения к веб-сокету
     private fun initWebSocket() {
         val departureId = intent.getIntExtra("id", 0)
         val webSocketUrl = "ws://68.183.30.45/ws/calculation/408/"
@@ -44,6 +45,7 @@ class ShowTariffsActivity : AppCompatActivity() {
         webSocketClient.connect()
     }
 
+    // запись ответа с веб-сокета
     private fun createWebSocketClient(coinbaseUri: URI?) {
         webSocketClient = object : WebSocketClient(coinbaseUri) {
             override fun onOpen(handshakedata: ServerHandshake?) {
@@ -66,6 +68,7 @@ class ShowTariffsActivity : AppCompatActivity() {
         }
     }
 
+    // получение тарифов
     private fun getTarrifList(message: String?) {
         message?.let {
             val moshi = Moshi.Builder()

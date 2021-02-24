@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
+    // функция для передачи в другой фрагмент
     private fun newInstanceLk(email: String, phone:String, userName: String): UsersLkFragment {
         val fr = usersLkFragment
         val args = Bundle()

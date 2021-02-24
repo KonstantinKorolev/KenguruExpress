@@ -67,11 +67,14 @@
     <string name="AddressBookSender">Sender in the Address Book</string>
     <string name="infoAboutReceiver">Recipient information</string>
     <string name="receiverInAddressBook">Recipient in the Address Book</string>
-    <string name="emptyTariffs">No offers from transport companies</string>
+    <string name="emptyTariffs">No offers from transport companiesE</string>
     <string name="waitingPlease">Wait</string>
-    <string name="infSender">Информация о отправителе</string>
+    <string name="infSender">Sender information</string>
     <string name="dispatch_book_is_empty">Dispatch book is empty</string>
-    <string name="rememberMe">Запомнить меня</string>
+    <string name="rememberMe">Remember me</string>
+    <string name="full_name">Full name</string>
+    <string name="textPhone">Phone</string>
+    <string name="EnableLightTheme">Включить светлую тему</string>
     <string-array name="shipmentNames">
         <item>Cargo</item>
         <item>Documents</item>

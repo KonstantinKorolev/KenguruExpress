@@ -28,6 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         initAction()
     }
 
+    // отслеживание действий пользователя
     private fun initAction() {
         registerBtn.setOnClickListener {
             val pattern = """\w[a-z]""".toRegex()
@@ -52,6 +53,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    // регистрация
     private fun registration() {
         val request = RegistrationRequest()
         request.email = emailRegisterEditText.text.toString().trim()
@@ -86,6 +88,7 @@ class RegisterActivity : AppCompatActivity() {
         })
     }
 
+    // сохранение в базу данных
     private fun saveToDb(email: String, id: Int) {
         myDbManger.openDb()
         myDbManger.insertToDb(email, id)

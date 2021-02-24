@@ -72,6 +72,9 @@
     <string name="infSender">Информация о отправителе</string>
     <string name="dispatch_book_is_empty">Dispatch book is empty</string>
     <string name="rememberMe">Запомнить меня</string>
+    <string name="full_name">Full name</string>
+    <string name="textPhone">Phone</string>
+    <string name="EnableLightTheme">Включить светлую тему</string>
     <string-array name="shipmentNames">
         <item>Cargaison</item>
         <item>Des documents</item>

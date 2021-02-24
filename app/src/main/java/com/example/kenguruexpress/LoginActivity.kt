@@ -96,6 +96,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    // переотправка почты пользователя
     private fun resendEmail(email: String) {
         val request = ResendRequest()
         request.email = email
@@ -120,6 +121,7 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    // вход пользователя
     private fun login(email: String, password: String, rememberMe: Boolean) { // функция для входа в личный кабинет
         var userLoginBool = false
         val request = LoginRequest()

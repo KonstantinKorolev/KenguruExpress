@@ -1,5 +1,6 @@
 package com.example.kenguruexpress
 
+
 data class ListItemAddress (
     var id: String,
     var locality: Int,
